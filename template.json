@@ -1,0 +1,947 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "extensions_newuserscript_storageAccountName": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "extensions_newuserscript_storageAccountKey": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "extensions_newuserscript_commandToExecute": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "extensions_newuserscript_storageAccountName_1": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "extensions_newuserscript_storageAccountKey_1": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "extensions_newuserscript_commandToExecute_1": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "networkInterfaces_nic_bm0_name": {
+            "defaultValue": "nic-bm0",
+            "type": "String"
+        },
+        "loadBalancers_qdemo4b3g_LB_name": {
+            "defaultValue": "qdemo4b3g-LB",
+            "type": "String"
+        },
+        "networkInterfaces_nic_voter0_name": {
+            "defaultValue": "nic-voter0",
+            "type": "String"
+        },
+        "virtualMachines_qdemo4b3g_bm0_name": {
+            "defaultValue": "qdemo4b3g-bm0",
+            "type": "String"
+        },
+        "virtualNetworks_qdemo4b3gvnet_name": {
+            "defaultValue": "qdemo4b3gvnet",
+            "type": "String"
+        },
+        "virtualMachines_qdemo4b3g_vtr0_name": {
+            "defaultValue": "qdemo4b3g-vtr0",
+            "type": "String"
+        },
+        "networkSecurityGroups_qdemo4b3gnsg_name": {
+            "defaultValue": "qdemo4b3gnsg",
+            "type": "String"
+        },
+        "publicIPAddresses_qdemo4b3g_publicip_name": {
+            "defaultValue": "qdemo4b3g-publicip",
+            "type": "String"
+        },
+        "availabilitySets_qdemo4b3gquorumAvSet_name": {
+            "defaultValue": "qdemo4b3gquorumAvSet",
+            "type": "String"
+        },
+        "subnets_befficslsz55i_name": {
+            "defaultValue": "befficslsz55i",
+            "type": "String"
+        },
+        "extensions_newuserscript_name": {
+            "defaultValue": "newuserscript",
+            "type": "String"
+        },
+        "extensions_newuserscript_name_1": {
+            "defaultValue": "newuserscript",
+            "type": "String"
+        },
+        "securityRules_allow_ssh_name": {
+            "defaultValue": "allow-ssh",
+            "type": "String"
+        },
+        "securityRules_allow_cakeshop_name": {
+            "defaultValue": "allow-cakeshop",
+            "type": "String"
+        },
+        "securityRules_block_bootnodes_name": {
+            "defaultValue": "block-bootnodes",
+            "type": "String"
+        },
+        "securityRules_allow_etheradmin_name": {
+            "defaultValue": "allow-etheradmin",
+            "type": "String"
+        },
+        "virtualMachines_qdemo4b3g_bm0_id": {
+            "defaultValue": "/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Compute/disks/qdemo4b3g-bm0_OsDisk_1_fb4b2fee3ff04e3c90ddd6d85bec3ba5",
+            "type": "String"
+        },
+        "virtualMachines_qdemo4b3g_vtr0_id": {
+            "defaultValue": "/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Compute/disks/qdemo4b3g-vtr0_OsDisk_1_3a46a4ec59ba4584b483dbe909f5105a",
+            "type": "String"
+        },
+        "loadBalancers_qdemo4b3g_LB_id": {
+            "defaultValue": "/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/loadBalancers/qdemo4b3g-LB/frontendIPConfigurations/LoadBalancerFrontEnd",
+            "type": "String"
+        },
+        "loadBalancers_qdemo4b3g_LB_id_1": {
+            "defaultValue": "/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/loadBalancers/qdemo4b3g-LB/backendAddressPools/LoadBalancerBackend1",
+            "type": "String"
+        },
+        "loadBalancers_qdemo4b3g_LB_id_2": {
+            "defaultValue": "/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/loadBalancers/qdemo4b3g-LB/probes/lbProbe1",
+            "type": "String"
+        },
+        "loadBalancers_qdemo4b3g_LB_id_3": {
+            "defaultValue": "/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/loadBalancers/qdemo4b3g-LB/frontendIPConfigurations/LoadBalancerFrontEnd",
+            "type": "String"
+        },
+        "loadBalancers_qdemo4b3g_LB_id_4": {
+            "defaultValue": "/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/loadBalancers/qdemo4b3g-LB/frontendIPConfigurations/LoadBalancerFrontEnd",
+            "type": "String"
+        },
+        "loadBalancers_qdemo4b3g_LB_id_5": {
+            "defaultValue": "/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/loadBalancers/qdemo4b3g-LB/frontendIPConfigurations/LoadBalancerFrontEnd",
+            "type": "String"
+        },
+        "loadBalancers_qdemo4b3g_LB_id_6": {
+            "defaultValue": "/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/loadBalancers/qdemo4b3g-LB/frontendIPConfigurations/LoadBalancerFrontEnd",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Compute/availabilitySets/qdemo4b3gquorumAvSet'.",
+            "type": "Microsoft.Compute/availabilitySets",
+            "sku": {
+                "name": "Aligned"
+            },
+            "name": "[parameters('availabilitySets_qdemo4b3gquorumAvSet_name')]",
+            "apiVersion": "2017-03-30",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "platformUpdateDomainCount": 2,
+                "platformFaultDomainCount": 2,
+                "virtualMachines": [
+                    {
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_qdemo4b3g_bm0_name'))]"
+                    },
+                    {
+                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_qdemo4b3g_vtr0_name'))]"
+                    }
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_qdemo4b3g_bm0_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_qdemo4b3g_vtr0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Compute/virtualMachines/qdemo4b3g-bm0'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_qdemo4b3g_bm0_name')]",
+            "apiVersion": "2017-03-30",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_qdemo4b3gquorumAvSet_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_D1_v2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "16.04.0-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_qdemo4b3g_bm0_name'),'_OsDisk_1_fb4b2fee3ff04e3c90ddd6d85bec3ba5')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS",
+                            "id": "[parameters('virtualMachines_qdemo4b3g_bm0_id')]"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_qdemo4b3g_bm0_name')]",
+                    "adminUsername": "gethadmin",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_bm0_name'))]"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_qdemo4b3gquorumAvSet_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_bm0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Compute/virtualMachines/qdemo4b3g-vtr0'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_qdemo4b3g_vtr0_name')]",
+            "apiVersion": "2017-03-30",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_qdemo4b3gquorumAvSet_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_D1_v2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "16.04.0-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_qdemo4b3g_vtr0_name'),'_OsDisk_1_3a46a4ec59ba4584b483dbe909f5105a')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS",
+                            "id": "[parameters('virtualMachines_qdemo4b3g_vtr0_id')]"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_qdemo4b3g_vtr0_name')]",
+                    "adminUsername": "gethadmin",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_voter0_name'))]"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_qdemo4b3gquorumAvSet_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_nic_voter0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/loadBalancers/qdemo4b3g-LB'.",
+            "type": "Microsoft.Network/loadBalancers",
+            "name": "[parameters('loadBalancers_qdemo4b3g_LB_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "f4850929-0502-46b5-87ba-ba4bd9e5394c",
+                "frontendIPConfigurations": [
+                    {
+                        "name": "LoadBalancerFrontEnd",
+                        "etag": "W/\"e94441c1-c1e1-49f1-bcee-3c550c3e2d98\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_qdemo4b3g_publicip_name'))]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "LoadBalancerBackend1",
+                        "etag": "W/\"e94441c1-c1e1-49f1-bcee-3c550c3e2d98\"",
+                        "properties": {
+                            "provisioningState": "Succeeded"
+                        }
+                    }
+                ],
+                "loadBalancingRules": [
+                    {
+                        "name": "LB-Rule1",
+                        "etag": "W/\"e94441c1-c1e1-49f1-bcee-3c550c3e2d98\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[parameters('loadBalancers_qdemo4b3g_LB_id')]"
+                            },
+                            "frontendPort": 80,
+                            "backendPort": 3000,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 5,
+                            "protocol": "Tcp",
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[parameters('loadBalancers_qdemo4b3g_LB_id_1')]"
+                            },
+                            "probe": {
+                                "id": "[parameters('loadBalancers_qdemo4b3g_LB_id_2')]"
+                            }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "lbProbe1",
+                        "etag": "W/\"e94441c1-c1e1-49f1-bcee-3c550c3e2d98\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "Tcp",
+                            "port": 3000,
+                            "intervalInSeconds": 5,
+                            "numberOfProbes": 2
+                        }
+                    }
+                ],
+                "inboundNatRules": [
+                    {
+                        "name": "Natcakeshop0",
+                        "etag": "W/\"e94441c1-c1e1-49f1-bcee-3c550c3e2d98\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[parameters('loadBalancers_qdemo4b3g_LB_id_3')]"
+                            },
+                            "frontendPort": 4000,
+                            "backendPort": 4000,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp"
+                        }
+                    },
+                    {
+                        "name": "Natcakeshop1",
+                        "etag": "W/\"e94441c1-c1e1-49f1-bcee-3c550c3e2d98\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[parameters('loadBalancers_qdemo4b3g_LB_id_4')]"
+                            },
+                            "frontendPort": 4001,
+                            "backendPort": 4000,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp"
+                        }
+                    },
+                    {
+                        "name": "Natssh1",
+                        "etag": "W/\"e94441c1-c1e1-49f1-bcee-3c550c3e2d98\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[parameters('loadBalancers_qdemo4b3g_LB_id_5')]"
+                            },
+                            "frontendPort": 3001,
+                            "backendPort": 22,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp"
+                        }
+                    },
+                    {
+                        "name": "Natssh0",
+                        "etag": "W/\"e94441c1-c1e1-49f1-bcee-3c550c3e2d98\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[parameters('loadBalancers_qdemo4b3g_LB_id_6')]"
+                            },
+                            "frontendPort": 3000,
+                            "backendPort": 22,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp"
+                        }
+                    }
+                ],
+                "outboundNatRules": [],
+                "inboundNatPools": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_qdemo4b3g_publicip_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/networkInterfaces/nic-bm0'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_nic_bm0_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "04381464-9366-4654-8571-08142932ab57",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"b0755e43-4fb0-47bb-86b7-41a9ddc2cd9e\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.0.5",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_qdemo4b3gvnet_name'), parameters('subnets_befficslsz55i_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_qdemo4b3g_LB_name')), '/backendAddressPools/LoadBalancerBackend1')]"
+                                }
+                            ],
+                            "loadBalancerInboundNatRules": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_qdemo4b3g_LB_name')), '/inboundNatRules/Natcakeshop0')]"
+                                },
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_qdemo4b3g_LB_name')), '/inboundNatRules/Natssh0')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "jahsiks1ahletn04rquwlnpcga.bx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-1B-B9-39",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_qdemo4b3g_bm0_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_qdemo4b3gvnet_name'), parameters('subnets_befficslsz55i_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_qdemo4b3g_LB_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_qdemo4b3g_bm0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/networkInterfaces/nic-voter0'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_nic_voter0_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "744a03fb-2abe-4c5c-9005-455207a19658",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"e3fd5721-bdcc-4cc4-b28e-5e5ea5a2e91a\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.0.4",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_qdemo4b3gvnet_name'), parameters('subnets_befficslsz55i_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_qdemo4b3g_LB_name')), '/backendAddressPools/LoadBalancerBackend1')]"
+                                }
+                            ],
+                            "loadBalancerInboundNatRules": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_qdemo4b3g_LB_name')), '/inboundNatRules/Natcakeshop1')]"
+                                },
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_qdemo4b3g_LB_name')), '/inboundNatRules/Natssh1')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "jahsiks1ahletn04rquwlnpcga.bx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-1B-B1-20",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_qdemo4b3g_vtr0_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_qdemo4b3gvnet_name'), parameters('subnets_befficslsz55i_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_qdemo4b3g_LB_name'))]",
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_qdemo4b3g_vtr0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/networkSecurityGroups/qdemo4b3gnsg'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_qdemo4b3gnsg_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "tags": {
+                "displayName": "Network Security Group"
+            },
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "2374c6be-2ede-4776-a0d5-da71b6a26188",
+                "securityRules": [
+                    {
+                        "name": "allow-ssh",
+                        "etag": "W/\"bb6fe92e-995d-44f5-829a-30a67d1bacfd\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow SSH",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "22",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "allow-cakeshop",
+                        "etag": "W/\"bb6fe92e-995d-44f5-829a-30a67d1bacfd\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow cakeshop IDE",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "4000-4001",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 102,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "allow-etheradmin",
+                        "etag": "W/\"bb6fe92e-995d-44f5-829a-30a67d1bacfd\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow etheradmin site",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3000",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 103,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "block-bootnodes",
+                        "etag": "W/\"bb6fe92e-995d-44f5-829a-30a67d1bacfd\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Block Internet Bootnodes",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "30303",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "Internet",
+                            "access": "Deny",
+                            "priority": 100,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ],
+                "defaultSecurityRules": [
+                    {
+                        "name": "AllowVnetInBound",
+                        "etag": "W/\"bb6fe92e-995d-44f5-829a-30a67d1bacfd\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowAzureLoadBalancerInBound",
+                        "etag": "W/\"bb6fe92e-995d-44f5-829a-30a67d1bacfd\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from azure load balancer",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "AzureLoadBalancer",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllInBound",
+                        "etag": "W/\"bb6fe92e-995d-44f5-829a-30a67d1bacfd\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all inbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowVnetOutBound",
+                        "etag": "W/\"bb6fe92e-995d-44f5-829a-30a67d1bacfd\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowInternetOutBound",
+                        "etag": "W/\"bb6fe92e-995d-44f5-829a-30a67d1bacfd\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to Internet",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "Internet",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllOutBound",
+                        "etag": "W/\"bb6fe92e-995d-44f5-829a-30a67d1bacfd\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all outbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Outbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/publicIPAddresses/qdemo4b3g-publicip'.",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('publicIPAddresses_qdemo4b3g_publicip_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "34468772-b0b3-4d01-9e92-e3956fe072d7",
+                "ipAddress": "52.168.55.222",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "dnsSettings": {
+                    "domainNameLabel": "qdemo4b3g",
+                    "fqdn": "qdemo4b3g.eastus.cloudapp.azure.com"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/virtualNetworks/qdemo4b3gvnet'.",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_qdemo4b3gvnet_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "2a240f48-015b-49d6-b75e-8c2965b5e230",
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.0.0.0/20"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "befficslsz55i",
+                        "etag": "W/\"84ac6f0a-bd68-4ea2-8f90-572a1a9b1b8b\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "10.0.0.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_qdemo4b3gnsg_name'))]"
+                            }
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_qdemo4b3gnsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Compute/virtualMachines/qdemo4b3g-bm0/extensions/newuserscript'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_qdemo4b3g_bm0_name'), '/', parameters('extensions_newuserscript_name'))]",
+            "apiVersion": "2017-03-30",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Azure.Extensions",
+                "type": "CustomScript",
+                "typeHandlerVersion": "2.0",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "fileUris": [
+                        "https://gallery.azure.com/artifact/20151001/enterprise-ethereum-alliance.eea-single-memberquorum-single-member-blockchain-network.1.0.2/Artifacts/scripts/configure.sh"
+                    ]
+                },
+                "protectedSettings": {
+                    "storageAccountName": "[parameters('extensions_newuserscript_storageAccountName')]",
+                    "storageAccountKey": "[parameters('extensions_newuserscript_storageAccountKey')]",
+                    "commandToExecute": "[parameters('extensions_newuserscript_commandToExecute')]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_qdemo4b3g_bm0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Compute/virtualMachines/qdemo4b3g-vtr0/extensions/newuserscript'.",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(parameters('virtualMachines_qdemo4b3g_vtr0_name'), '/', parameters('extensions_newuserscript_name_1'))]",
+            "apiVersion": "2017-03-30",
+            "location": "eastus",
+            "scale": null,
+            "properties": {
+                "publisher": "Microsoft.Azure.Extensions",
+                "type": "CustomScript",
+                "typeHandlerVersion": "2.0",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "fileUris": [
+                        "https://gallery.azure.com/artifact/20151001/enterprise-ethereum-alliance.eea-single-memberquorum-single-member-blockchain-network.1.0.2/Artifacts/scripts/configure.sh"
+                    ]
+                },
+                "protectedSettings": {
+                    "storageAccountName": "[parameters('extensions_newuserscript_storageAccountName_1')]",
+                    "storageAccountKey": "[parameters('extensions_newuserscript_storageAccountKey_1')]",
+                    "commandToExecute": "[parameters('extensions_newuserscript_commandToExecute_1')]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_qdemo4b3g_vtr0_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/networkSecurityGroups/qdemo4b3gnsg/securityRules/allow-ssh'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_qdemo4b3gnsg_name'), '/', parameters('securityRules_allow_ssh_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Allow SSH",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "22",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 100,
+                "direction": "Inbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_qdemo4b3gnsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/networkSecurityGroups/qdemo4b3gnsg/securityRules/allow-cakeshop'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_qdemo4b3gnsg_name'), '/', parameters('securityRules_allow_cakeshop_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Allow cakeshop IDE",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "4000-4001",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 102,
+                "direction": "Inbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_qdemo4b3gnsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/networkSecurityGroups/qdemo4b3gnsg/securityRules/allow-etheradmin'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_qdemo4b3gnsg_name'), '/', parameters('securityRules_allow_etheradmin_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Allow etheradmin site",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "3000",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "*",
+                "access": "Allow",
+                "priority": 103,
+                "direction": "Inbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_qdemo4b3gnsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/networkSecurityGroups/qdemo4b3gnsg/securityRules/block-bootnodes'.",
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "name": "[concat(parameters('networkSecurityGroups_qdemo4b3gnsg_name'), '/', parameters('securityRules_block_bootnodes_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "description": "Block Internet Bootnodes",
+                "protocol": "*",
+                "sourcePortRange": "*",
+                "destinationPortRange": "30303",
+                "sourceAddressPrefix": "*",
+                "destinationAddressPrefix": "Internet",
+                "access": "Deny",
+                "priority": 100,
+                "direction": "Outbound",
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_qdemo4b3gnsg_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9d34afe4-302e-4591-8c18-a08408735c57/resourceGroups/Quorum/providers/Microsoft.Network/virtualNetworks/qdemo4b3gvnet/subnets/befficslsz55i'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_qdemo4b3gvnet_name'), '/', parameters('subnets_befficslsz55i_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.0.0.0/24",
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_qdemo4b3gnsg_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_qdemo4b3gvnet_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_qdemo4b3gnsg_name'))]"
+            ]
+        }
+    ]
+}
